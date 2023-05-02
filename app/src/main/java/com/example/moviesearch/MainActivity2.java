@@ -16,8 +16,8 @@ import retrofit2.http.Query;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    TextView textView_get;
-    Call<data_model> call;
+   TextView textView_get;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +35,32 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent = getIntent();
         text = intent.getStringExtra("대사");
 
-        textView_get.setText("입력 받은 대사 :" + " " + text);
+        textView_get.setText("입력 받은 대사 :" + " " + text +"\n");
         System.out.println("입력 받은 대사 :" + " " + text);
 
 
-        call = retrofit_client.getApiService().test_api_get(text);
-        call.enqueue(new Callback<data_model>(){
+        Call <List<data_model>> call = retrofit_client.getApiService().test_api_get(text);
+        call.enqueue(new Callback<List<data_model>>(){
             //콜백 받는 부분
             @Override
-            public void onResponse(Call<data_model> call, Response<data_model> response) {
-                data_model result = response.body();
-                String str;
-                str =
-                        result.getName()+"\n";
+            public void onResponse(Call<List<data_model>>call, Response<List<data_model>> response) {
+                List<data_model> result = response.body();
+                for(data_model data_model : result) {
+                    String content = "";
 
-                textView_get.setText(str);
+                    content += "제목 : " +  data_model.getName() + "\n";
+                    content += "개봉 일자 : " +  data_model.getReleased_at() + "\n";
+                    content += "감독 : " +  data_model.getDirector() + "\n";
+                    content += "넷플릭스 바로가기 : " +  data_model.getDetails_url()  +"\n";
+                    content += "사진 : " +  data_model.getPoster_url() + "\n";
+
+
+                    textView_get.append(content);
+                }
             }
 
             @Override
-            public void onFailure(Call<data_model> call, Throwable t) {
+            public void onFailure(Call<List<data_model>> call, Throwable t) {
 
             }
         });
@@ -62,5 +69,4 @@ public class MainActivity2 extends AppCompatActivity {
 
 
     }
-
 }
