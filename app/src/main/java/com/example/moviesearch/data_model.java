@@ -7,13 +7,25 @@ public class data_model {
 
 
 
-    @SerializedName("id")
-    @Expose
-    private String id;
-
     @SerializedName("name")
     @Expose
     private String name;
+
+    @SerializedName("released_at")
+    @Expose
+    private String released_at;
+
+    @SerializedName("director")
+    @Expose
+    private String director;
+
+    @SerializedName("details_url")
+    @Expose
+    private String details_url;
+
+    @SerializedName("poster_url")
+    @Expose
+    private String poster_url;
 
 
 
@@ -23,14 +35,23 @@ public class data_model {
 
 
 
-    public String getID(){
-        return id;
-    }
+
 
     public String getName(){
         return name;
     }
-
+    public String getReleased_at(){
+        return released_at;
+    }
+    public String getDirector(){
+        return director;
+    }
+    public String getDetails_url(){
+        return details_url;
+    }
+    public String getPoster_url(){
+        return poster_url;
+    }
 
 
 
