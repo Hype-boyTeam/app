@@ -9,7 +9,7 @@ import retrofit2.http.Query;
 
 public interface Retrofit_interface {
     @GET("search")
-    Call<data_model> test_api_get(
+    Call<List<data_model>> test_api_get(
             @Query("text") String text);
 }
 
