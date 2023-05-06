@@ -28,7 +28,9 @@ public class data_model {
     @Expose
     private String poster_url;
 
-
+    @SerializedName("running_time")
+    @Expose
+    private String running_time;
 
     @SerializedName("text")
     @Expose
@@ -52,6 +54,9 @@ public class data_model {
     }
     public String getPoster_url(){
         return poster_url;
+    }
+    public String getRunning_time(){
+        return running_time;
     }
 
 
