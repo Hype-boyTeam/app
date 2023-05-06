@@ -6,56 +6,65 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import retrofit2.Call;
 import retrofit2.Response;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.http.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity2 extends AppCompatActivity {
 
    TextView textView_get;
+   
+    List<data_model> dataInfo;
+    RecyclerView recyclerView;
+    RecyclerAdapter recyclerAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-
+   
+         dataInfo = new ArrayList<>();
+        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+       
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        textView_get = findViewById(R.id.textView_get);
+        
 
         String text;
         Intent intent = getIntent();
         text = intent.getStringExtra("대사");
 
-        textView_get.setText("입력 받은 대사 :" + " " + text +"\n");
+        
         System.out.println("입력 받은 대사 :" + " " + text);
 
 
         Call <List<data_model>> call = retrofit_client.getApiService().test_api_get(text);
         call.enqueue(new Callback<List<data_model>>(){
             //콜백 받는 부분
-            @Override
+             @Override
             public void onResponse(Call<List<data_model>>call, Response<List<data_model>> response) {
-                List<data_model> result = response.body();
-                for(data_model data_model : result) {
-                    String content = "";
+                if(response.isSuccessful()){
+                    List<data_model> dataInfo = response.body();
+                    Log.d("MainActivity2",dataInfo.toString());
 
-                    content += "제목 : " +  data_model.getName() + "\n";
-                    content += "개봉 일자 : " +  data_model.getReleased_at() + "\n";
-                    content += "감독 : " +  data_model.getDirector() + "\n";
-                    content += "넷플릭스 바로가기 : " +  data_model.getDetails_url()  +"\n";
-                    content += "사진 : " +  data_model.getPoster_url() + "\n";
-
-
-                    textView_get.append(content);
+                    //📌
+                    //Adapter를 이용해서 postInfo에 있는 내용을 가져와서 저장해둔 listView 형식에 맞게 띄움
+                    recyclerAdapter = new RecyclerAdapter(getApplicationContext(),dataInfo);
+                    recyclerView.setAdapter(recyclerAdapter);
                 }
             }
 
