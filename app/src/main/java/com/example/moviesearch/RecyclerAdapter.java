@@ -41,6 +41,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
         holder.date.setText(datalist.get(position).getReleased_at());
         holder.content.setText(datalist.get(position).getDirector());
         holder.content1.setText(datalist.get(position).getDetails_url());
+        holder.content2.setText(datalist.get(position).getRunning_time());
 
 
     }
@@ -59,6 +60,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
         TextView date;
 
         TextView content1;
+        TextView content2;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +68,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
             title = (TextView)itemView.findViewById(R.id.name);
             content = (TextView)itemView.findViewById(R.id.content);
             content1 = (TextView)itemView.findViewById(R.id.content1);
+            content2 = (TextView)itemView.findViewById(R.id.content2);
             date = (TextView)itemView.findViewById(R.id.releaesed_at);
 
         }
