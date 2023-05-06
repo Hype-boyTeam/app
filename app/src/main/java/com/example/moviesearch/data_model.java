@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class data_model {
 
+    public List<data_model> data;
 
 
     @SerializedName("name")
