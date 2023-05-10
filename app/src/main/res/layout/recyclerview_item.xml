@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="230dp"
-   >
+    android:layout_height="230dp">
 
 
     <LinearLayout
@@ -15,23 +14,25 @@
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="91dp"
-            android:layout_height="200dp"
+            android:layout_width="137dp"
+            android:layout_height="194dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="13dp"
             android:layout_marginBottom="5dp"
-            android:background="@android:color/darker_gray"
+
+            android:background="#D9E5FF"
             android:gravity="center"
             android:padding="4dp"
             android:textSize="25dp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="H" />
 
         <LinearLayout
-            android:layout_width="310dp"
-            android:layout_height="196dp"
+            android:layout_width="266dp"
+            android:layout_height="194dp"
             android:layout_gravity="center"
             android:background="#D9E5FF"
             android:orientation="vertical">
@@ -41,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_weight="2.5"
-                android:background="#B2CCFF"
+                android:background="#D9E5FF"
                 android:orientation="horizontal">
 
                 <TextView
@@ -58,7 +59,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center|left"
                     android:layout_weight="1"
-                    android:background="#B2CCFF"
+                    android:background="#D9E5FF"
                     android:gravity="center|right"
                     android:text="2022-01-01-XX:XX:XX"
                     android:textSize="10sp" />
