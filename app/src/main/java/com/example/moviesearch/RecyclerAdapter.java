@@ -1,25 +1,22 @@
 package com.example.moviesearch;
 import android.content.Context;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import com.bumptech.glide.Glide;
 import java.util.List;
 public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>{
 
     private Context c;
     private List<data_model> datalist;
+
+
 
     public RecyclerAdapter(Context c, List<data_model> datalist){
         this.c = c;
@@ -37,11 +34,15 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position){
+        Glide.with(holder.itemView.getContext())
+                .load(datalist.get(position).getPoster_url())
+                .into(holder.image);
         holder.title.setText(datalist.get(position).getName());
         holder.date.setText(datalist.get(position).getReleased_at());
         holder.content.setText(datalist.get(position).getDirector());
         holder.content1.setText(datalist.get(position).getDetails_url());
         holder.content2.setText(datalist.get(position).getRunning_time());
+
 
 
     }
@@ -55,12 +56,15 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
     //Holder: 레이아웃과 연결해서 listView를 만들어주는 역할 (단순 연결)
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
+        ImageView image;
         TextView title;
         TextView content;
         TextView date;
-
         TextView content1;
+
         TextView content2;
+
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,7 +74,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
             content1 = (TextView)itemView.findViewById(R.id.content1);
             content2 = (TextView)itemView.findViewById(R.id.content2);
             date = (TextView)itemView.findViewById(R.id.releaesed_at);
-
+            image = itemView.findViewById(R.id.image);
         }
 
 
