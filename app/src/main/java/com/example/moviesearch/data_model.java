@@ -3,6 +3,8 @@ package com.example.moviesearch;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class data_model {
 
     public List<data_model> data;
