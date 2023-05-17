@@ -1,5 +1,5 @@
 package com.example.moviesearch;
-import android.content.Context;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import java.util.List;
+
+import retrofit2.Callback;
+
 public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>{
 
-    private Context c;
+    private Callback <List<data_model>> c;
     private List<data_model> datalist;
 
 
 
-    public RecyclerAdapter(Context c, List<data_model> datalist){
+    public RecyclerAdapter(Callback<List<data_model>> c, List<data_model> datalist){
         this.c = c;
         this.datalist = datalist;
     }
@@ -28,7 +31,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.MyVie
     public RecyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
 
         //inflater: xml을 객체화
-        View view = LayoutInflater.from(c).inflate(R.layout.recyclerview_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item,parent,false);
         return new MyViewHolder(view);
     }
 
