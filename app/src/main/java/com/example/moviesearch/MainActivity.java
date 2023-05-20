@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                TextView text1 = (TextView) findViewById(R.id.txtresult);
+               
 
                 intent.putExtra("대사", query);
                 startActivity(intent);
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             //텍스트가 바뀔때마다 호출
             @Override
             public boolean onQueryTextChange(String newText) {
-                TextView text1 = (TextView) findViewById(R.id.txtsearch);
+               
 
                 return true;
             }
