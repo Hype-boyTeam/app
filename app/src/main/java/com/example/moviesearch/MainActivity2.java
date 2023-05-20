@@ -3,7 +3,7 @@ package com.example.moviesearch;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,7 +55,6 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         System.out.println("입력 받은 대사 :" + " " + text);
-        textView_get.setText(text + " 의 검색 결과입니다. ");
 
 
         Call <List<data_model>> call = retrofit_client.getApiService().test_api_get(text);
@@ -63,14 +62,21 @@ public class MainActivity2 extends AppCompatActivity {
             //콜백 받는 부분
             @Override
             public void onResponse(Call<List<data_model>>call, Response<List<data_model>> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
+                    textView_get.setText("\"" + text + "\"" + "의\n검색 결과입니다. ");
                     List<data_model> dataInfo = response.body();
-                    Log.d("MainActivity2",dataInfo.toString());
+                    Log.d("MainActivity2", dataInfo.toString());
 
-                    //📌
-                    //Adapter를 이용해서 postInfo에 있는 내용을 가져와서 저장해둔 listView 형식에 맞게 띄움
-                    recyclerAdapter = new RecyclerAdapter(this,dataInfo);
-                    recyclerView.setAdapter(recyclerAdapter);
+                    if(dataInfo.isEmpty()){
+                        textView_get.setText("검색 결과가 없습니다.");
+                    }
+
+
+                    else { //📌
+                        //Adapter를 이용해서 dataInfo에 있는 내용을 가져와서 저장해둔 listView 형식에 맞게 띄움
+                        recyclerAdapter = new RecyclerAdapter(this, dataInfo);
+                        recyclerView.setAdapter(recyclerAdapter);
+                    }
                 }
 
 
