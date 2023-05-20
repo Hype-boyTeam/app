@@ -37,7 +37,7 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-
+        TextView textView_get = (TextView) findViewById(R.id.textView_get) ;
         dataInfo = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
