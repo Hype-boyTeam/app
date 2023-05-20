@@ -55,6 +55,7 @@ public class MainActivity2 extends AppCompatActivity {
 
 
         System.out.println("입력 받은 대사 :" + " " + text);
+        textView_get.setText(text + " 의 검색 결과입니다. ");
 
 
         Call <List<data_model>> call = retrofit_client.getApiService().test_api_get(text);
